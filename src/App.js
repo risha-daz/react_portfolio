@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 import Header from "./components/divisions/Header";
 import Navbar from "./components/divisions/Navbar";
+import Menu from "./components/divisions/Menu";
 import Footer from "./components/divisions/Footer";
 import bg from "./components/bg.jpg";
 import Home from "./components/pages/Home";
@@ -15,6 +16,7 @@ function App() {
     <OverallState>
       <Router>
         <div className='App mx-auto' style={background}>
+          <Menu />
           <Header />
           <Navbar />
           <Switch>
