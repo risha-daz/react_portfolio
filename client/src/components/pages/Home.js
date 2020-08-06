@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className='bg-white container mx-auto p-12 md:p-32 w-11/12 shadow-2xl'>
+    <div className='bg-white container mx-auto p-6 md:p-32 w-11/12 shadow shadow-2xl'>
       <h3 className='sm:text-6xl text-5xl text-center uppercase font-bold'>
         Data Science!
       </h3>

@@ -1,22 +1,23 @@
 import React from "react";
 import "./style.css";
-import Header from "./components/divisions/Header";
-import Navbar from "./components/divisions/Navbar";
-import Menu from "./components/divisions/Menu";
-import Footer from "./components/divisions/Footer";
+import Header from "./components/layout/Header";
+import Navbar from "./components/layout/Navbar";
+import Menu from "./components/layout/Menu";
+import Footer from "./components/layout/Footer";
 import bg from "./components/bg.jpg";
 import Home from "./components/pages/Home";
 import Projects from "./components/pages/Projects";
 import Library from "./components/pages/Library";
-import OverallState from "./context/OverallState";
+import AppState from "./context/AppState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <OverallState>
+    <AppState>
       <Router>
         <div className='App mx-auto' style={background}>
           <Menu />
+          {}
           <Header />
           <Navbar />
           <Switch>
@@ -30,9 +31,9 @@ function App() {
           </div>
         </div>
       </Router>
-    </OverallState>
+    </AppState>
   );
-}
+};
 
 const background = {
   backgroundImage: `url(${bg})`,

@@ -1,20 +1,20 @@
 import React, { useContext, Fragment } from "react";
-import OverallContext from "../../context/overallContext";
+import AppContext from "../../context/appContext";
 
 const Menu = () => {
-  const overallContext = useContext(OverallContext);
+  const appContext = useContext(AppContext);
   const menuBtn = () => {
-    overallContext.hideMenu();
+    appContext.hideMenu();
   };
   return (
     <Fragment>
       {" "}
-      {overallContext.menu === "hide" ? (
+      {appContext.menu === "hide" ? (
         <div className='x-button text-right text-lg p-6'>
           <button
             className='hover:text-blue-600'
             onClick={() => {
-              overallContext.showMenu();
+              appContext.showMenu();
             }}
           >
             <i className='fas fa-times'></i>

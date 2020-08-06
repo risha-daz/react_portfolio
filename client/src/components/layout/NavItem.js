@@ -1,22 +1,22 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import OverallContext from "../../context/overallContext";
+import AppContext from "../../context/appContext";
 
 const NavItem = ({ myname }) => {
-  const overallContext = useContext(OverallContext);
+  const appContext = useContext(AppContext);
   const clicked = () => {
-    overallContext.goto(myname);
+    appContext.goto(myname);
   };
-  console.log(overallContext.title);
+  console.log(appContext.title);
   return (
     <Link to={myname.url}>
       <div
         className={
-          overallContext.title.name === myname.name ? activeStyle : restStyle
+          appContext.title.name === myname.name ? activeStyle : restStyle
         }
         onClick={clicked}
       >
-        {myname.name === "Portfolio" ? "Home" : myname.name}
+        {myname.name === "Aeromodelling Club" ? "Home" : myname.name}
       </div>
     </Link>
   );

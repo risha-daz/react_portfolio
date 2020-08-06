@@ -1,15 +1,16 @@
 import React, { useReducer } from "react";
-import OverallContext from "./overallContext";
-import OverallReducer from "./overallReducer";
+import AppContext from "./appContext";
+import AppReducer from "./appReducer";
 import { GOTO_PAGE, SHOW_MENU, HIDE_MENU } from "./types";
 
-const OverallState = (props) => {
+const AppState = (props) => {
   const initialState = {
-    title: { name: "Portfolio", url: "/" },
-    menu: "static",
+    title: { name: "Aeromodelling Club", url: "/" },
+    menu: "desktop",
+    projects: null,
   };
 
-  const [state, dispatch] = useReducer(OverallReducer, initialState);
+  const [state, dispatch] = useReducer(AppReducer, initialState);
   const goto = (obj) => {
     dispatch({ type: GOTO_PAGE, payload: obj });
   };
@@ -22,18 +23,19 @@ const OverallState = (props) => {
     console.log(state.menu);
   };
   return (
-    <OverallContext.Provider
+    <AppContext.Provider
       value={{
         title: state.title,
         menu: state.menu,
+        projects: state.projects,
         goto,
         showMenu,
         hideMenu,
       }}
     >
       {props.children}
-    </OverallContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export default OverallState;
+export default AppState;
