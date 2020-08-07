@@ -30,7 +30,7 @@ const App = () => {
               <Route exact path='/about' component={About} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
-              <Route exact path='/:id' component={Edit} />
+              <Route exact path='/project/:id' component={Edit} />
             </Switch>
             <Footer />
             <div className='text-center text-gray-500 font-bold font-lg h-32'>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import AppContext from "../../../context/app/appContext";
 import PContext from "../../../context/projects/pContext";
-import c from "config";
+
 const Edit = (props) => {
   const appContext = useContext(AppContext);
   const pContext = useContext(PContext);
@@ -24,11 +24,9 @@ const Edit = (props) => {
     }
 
     if (props.match.params.id !== "add") {
-      console.log(props.match.params.id);
       let myproject = projects.filter(
         (item) => item._id === props.match.params.id
-      );
-      console.log(myproject);
+      )[0];
       setProject({
         ...project,
         name: myproject.name,
@@ -45,7 +43,6 @@ const Edit = (props) => {
         team: [currentUser.username],
       });
     }
-    console.log(project);
     //eslint-disable-next-line
   }, [currentUser, props.history]);
   const {
@@ -94,7 +91,7 @@ const Edit = (props) => {
   return (
     <div className='container mx-auto p-6 md:p-32 w-11/12 shadow bg-white'>
       <h3 className='sm:text-6xl text-4xl mb-6 text-center uppercase font-bold'>
-        {props.project ? "Edit" : "Add"} Project
+        {props.match.params.id !== "add" ? "Edit" : "Add"} Project
       </h3>
       <form className='w-full max-w-lg mx-auto pt-6'>
         {/* name */}
@@ -223,11 +220,12 @@ const Edit = (props) => {
                 <option value='' disabled>
                   Add Members...
                 </option>
-                {users.map((user) => (
-                  <option key={user.id} value={user.username}>
-                    {user.username}
-                  </option>
-                ))}
+                {users &&
+                  users.map((user) => (
+                    <option key={user.id} value={user.username}>
+                      {user.username}
+                    </option>
+                  ))}
               </select>
             </div>
             <button
@@ -259,7 +257,7 @@ const Edit = (props) => {
             type='button'
             onClick={onSubmit}
           >
-            {props.project ? "Edit" : "Add"}
+            {props.match.params.id !== "add" ? "Edit" : "Add"}
           </button>
         </div>
       </form>
