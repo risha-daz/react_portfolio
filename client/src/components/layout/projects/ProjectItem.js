@@ -42,7 +42,7 @@ const ProjectItem = ({ project }) => {
               completed ? "green" : "blue"
             }-500 uppercase px-2 py-1 text-xs font-bold mr-3`}
           >
-            <Link to={`/edit/${_id}`}>Edit</Link>
+            <Link to={`/${_id}`}>Edit</Link>
           </span>
         </div>
       </div>

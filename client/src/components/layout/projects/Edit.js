@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import AppContext from "../../../context/app/appContext";
 import PContext from "../../../context/projects/pContext";
+import c from "config";
 const Edit = (props) => {
   const appContext = useContext(AppContext);
   const pContext = useContext(PContext);
@@ -9,8 +10,8 @@ const Edit = (props) => {
   const [project, setProject] = useState({
     name: "",
     description: "",
-    postedby: currentUser.username,
-    team: [currentUser.username],
+    postedby: "",
+    team: null,
     completed: false,
     link: "",
     addmember: "",
@@ -21,11 +22,13 @@ const Edit = (props) => {
       goto({ name: "Aeromodelling Club", url: "/" });
       props.history.push("/"); //redirect
     }
-    console.log(props.match.params.id);
+
     if (props.match.params.id !== "add") {
+      console.log(props.match.params.id);
       let myproject = projects.filter(
-        (item) => item._id === props.match.params
+        (item) => item._id === props.match.params.id
       );
+      console.log(myproject);
       setProject({
         ...project,
         name: myproject.name,
@@ -35,7 +38,14 @@ const Edit = (props) => {
         completed: myproject.completed,
         link: myproject.link,
       });
+    } else {
+      setProject({
+        ...project,
+        postedby: currentUser.username,
+        team: [currentUser.username],
+      });
     }
+    console.log(project);
     //eslint-disable-next-line
   }, [currentUser, props.history]);
   const {
@@ -179,22 +189,23 @@ const Edit = (props) => {
               Team Members:
             </label>
           </div>
-          {team.map((member, index) => (
-            <div
-              key={index}
-              className='bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 my-1 rounded relative'
-            >
-              <span className='block sm:inline'>{member}</span>
-              <input
-                className='absolute top-0 border-none bottom-0 right-0 px-4 py-2 text-xl text-gray-600 bg-transparent'
-                type='button'
-                id={index}
-                role='button'
-                value='&times;'
-                onClick={removeMember}
-              />
-            </div>
-          ))}
+          {team &&
+            team.map((member, index) => (
+              <div
+                key={index}
+                className='bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 my-1 rounded relative'
+              >
+                <span className='block sm:inline'>{member}</span>
+                <input
+                  className='absolute top-0 border-none bottom-0 right-0 px-4 py-2 text-xl text-gray-600 bg-transparent'
+                  type='button'
+                  id={index}
+                  role='button'
+                  value='&times;'
+                  onClick={removeMember}
+                />
+              </div>
+            ))}
           <div class='w-full flex flex-center mt-4'>
             <label
               className='block text-gray-500 font-bold mb-1 mr-2 ml-0'

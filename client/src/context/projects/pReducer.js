@@ -8,7 +8,7 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case GET_PROJECTS:
-      return { ...state, title: action.payload };
+      return { ...state, projects: action.payload };
     case DELETE_PROJECT:
       return {
         ...state,
