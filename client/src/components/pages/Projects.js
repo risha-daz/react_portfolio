@@ -1,29 +1,23 @@
-import React from "react";
-
+import React, { useEffect, useContext } from "react";
+import ProjectList from "../layout/projects/ProjectList";
+import AppContext from "../../context/app/appContext";
+import PContext from "../../context/projects/pContext";
+import AddProject from "../layout/projects/AddProject";
 const Projects = () => {
+  const pContext = useContext(PContext);
+  const appContext = useContext(AppContext);
+  useEffect(() => {
+    pContext.getProjects();
+    console.log(pContext.projects);
+    //eslint-disable-next-line
+  }, []);
   return (
-    <div className='bg-white container mx-auto p-12 md:p-32 w-11/12 shadow-2xl'>
-      <h3 className='sm:text-6xl text-5xl text-center uppercase font-bold'>
-        Some of our Projects
+    <div className='bg-white container mx-auto md:pt-4 p-2 md:p-16 w-11/12 shadow-2xl'>
+      <h3 className='sm:text-6xl text-4xl p-10 text-center uppercase font-bold'>
+        Our Projects
       </h3>
-      <h2 className='text-center italic sm:text-4xl text-4xl'>Subtitle 2</h2>
-      <br></br>
-      <p className='my-3 text-xl md:text-lg'>Lorem</p>
-      <p className='my-3 text-xl md:text-lg'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-      <p className='my-3 text-xl md:text-lg'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+      {pContext.projects && <ProjectList />}
+      {appContext.currentUser && <AddProject />}
     </div>
   );
 };

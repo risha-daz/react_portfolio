@@ -1,3 +1,13 @@
 export const GOTO_PAGE = "GOTO_PAGE";
 export const SHOW_MENU = "SHOW_MENU";
-export const HIDE_MENU = "HIDE_MENU";
+export const SHOW_NAV = "SHOW_NAV";
+export const SET_ERRORS = "SET_ERRORS";
+export const GET_PROJECTS = "GET_PROJECTS";
+export const EDIT_PROJECT = "EDIT_PROJECT";
+export const DELETE_PROJECT = "DELETE_PROJECT";
+export const ADD_PROJECT = "ADD_PROJECT";
+export const GET_MEMBERS = "GET_MEMBERS";
+export const LOGIN_MEMBER = "LOGIN_MEMBER";
+export const REGISTER_MEMBER = "REGISTER_MEMBER";
+export const LOGOUT = "LOGOUT";
+export const LOAD_DETAILS = "LOAD_DETAILS";

@@ -6,8 +6,8 @@ const Navbar = () => {
   const [navitems] = useState([
     { name: "Aeromodelling Club", url: "/" },
     { name: "Projects", url: "/projects" },
-    { name: "Library", url: "/library" },
-    { name: "About Us", url: "/aboutus" },
+    { name: "About Us", url: "/about" },
+    { name: "Login", url: "/login" },
   ]);
   return (
     <div

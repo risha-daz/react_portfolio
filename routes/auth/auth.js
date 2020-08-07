@@ -4,15 +4,15 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const config = require("config");
-const User = require("../models/User");
-const auth = require("../middleware/auth");
+const User = require("../../models/User");
+const auth = require("../../middleware/auth");
 
 // @route   GET ./api/auth/
 // @desc    get the logged in user
 // @access  private
 router.get("/", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.currentUser.id).select("-password");
+    const user = await User.findById(req.currentUser.id).select("id username");
     res.json(user);
   } catch (err) {
     console.error(err.message);

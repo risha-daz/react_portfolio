@@ -11,11 +11,19 @@ const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   password: {
     type: String,
     required: true,
+  },
+  cover: {
+    type: String,
+  },
+  github: {
+    type: String,
+  },
+  linkedin: {
+    type: String,
   },
   date: {
     type: Date,

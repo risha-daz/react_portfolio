@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import AppContext from "../../context/appContext";
+import AppContext from "../../context/app/appContext";
 
 const NavItem = ({ myname }) => {
   const appContext = useContext(AppContext);
   const clicked = () => {
     appContext.goto(myname);
   };
-  console.log(appContext.title);
+
   return (
     <Link to={myname.url}>
       <div

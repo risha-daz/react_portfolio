@@ -1,5 +1,5 @@
 import React, { useContext, Fragment } from "react";
-import AppContext from "../../context/appContext";
+import AppContext from "../../context/app/appContext";
 
 const Menu = () => {
   const appContext = useContext(AppContext);

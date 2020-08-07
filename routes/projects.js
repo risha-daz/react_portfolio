@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+
 const Project = require("../models/Project");
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
 // @route   GET ./api/projects/
 // @desc    Get projects
-// @access  private
-router.get("/", auth, async (req, res) => {
+// @access  public
+router.get("/", async (req, res) => {
   try {
-    const projects = await Project.find({ user: req.currentUser.id }).sort({
+    const projects = await Project.find({}).sort({
       date: -1,
     });
     res.json(projects);
@@ -25,29 +25,27 @@ router.get("/", auth, async (req, res) => {
 // @access  private
 router.post(
   "/",
-  [auth, [check("title", "Please enter a title").not().isEmpty()]],
+  [auth, [check("name", "Please enter a title").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ msg: "Please enter a title" });
     }
-    const { title, author, genre, read, description, rating, cover } = req.body;
+    const { name, description, completed, link, postedby, team } = req.body;
     try {
       const newProject = new Project({
-        user: req.currentUser.id,
-        title,
-        author,
-        genre,
-        read,
+        name,
         description,
-        rating,
-        cover,
+        completed,
+        postedby,
+        team,
+        link,
       });
 
       const project = await newProject.save();
       res.json(project);
     } catch (err) {
-      console.error(error.message);
+      console.error(err.message);
       res.status(500).send("Server error");
     }
   }
@@ -57,16 +55,16 @@ router.post(
 // @desc    update a project
 // @access  private
 router.put("/:id", auth, async (req, res) => {
-  const { title, author, genre, read, description, rating, cover } = req.body;
+  const { name, link, postedby, completed, description } = req.body;
   console.log(req.body);
   let updates = {};
-  if (title) updates.title = title;
-  if (author) updates.author = author;
-  if (genre) updates.genre = genre;
+  if (name) updates.name = name;
+  if (link) updates.link = link;
+  if (postedby) updates.postedby = postedby;
   if (description) updates.description = description;
-  if (rating) updates.rating = rating;
-  if (read.toString()) updates.read = read;
-  if (cover) updates.cover = cover;
+
+  if (completed.toString()) updates.completed = completed;
+  if (team) updates.team = team;
 
   try {
     let project = await Project.findById(req.params.id);
@@ -74,7 +72,7 @@ router.put("/:id", auth, async (req, res) => {
     if (!project)
       return res.status(404).json({ msg: "project does not exist" });
 
-    if (req.currentUser.id !== project.user.toString()) {
+    if (!req.currentUser) {
       res.status(401).send("Not authorised");
     }
 
@@ -101,7 +99,7 @@ router.delete("/:id", auth, async (req, res) => {
     if (!project)
       return res.status(404).json({ msg: "project does not exist" });
 
-    if (req.currentUser.id !== project.user.toString()) {
+    if (!req.currentUser) {
       res.status(401).send("Not authorised");
     }
 

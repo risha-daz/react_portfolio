@@ -3,21 +3,28 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+  postedby: {
+    type: String,
   },
-  title: {
+  name: {
     type: String,
     required: true,
   },
   team: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: [String],
   },
   description: {
     type: String,
   },
   cover: {
+    type: String,
+  },
+  completed: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  link: {
     type: String,
   },
   date: {
