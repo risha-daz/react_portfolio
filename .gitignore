@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#tailwind file
+.style.css
+
 # testing
 /coverage
 
