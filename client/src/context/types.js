@@ -1,7 +1,6 @@
 export const GOTO_PAGE = "GOTO_PAGE";
 export const SHOW_MENU = "SHOW_MENU";
 export const SHOW_NAV = "SHOW_NAV";
-export const SET_ERRORS = "SET_ERRORS";
 export const GET_PROJECTS = "GET_PROJECTS";
 export const EDIT_PROJECT = "EDIT_PROJECT";
 export const DELETE_PROJECT = "DELETE_PROJECT";
@@ -11,3 +10,5 @@ export const LOGIN_MEMBER = "LOGIN_MEMBER";
 export const REGISTER_MEMBER = "REGISTER_MEMBER";
 export const LOGOUT = "LOGOUT";
 export const LOAD_DETAILS = "LOAD_DETAILS";
+export const SET_ERROR = "SET_ERROR";
+export const REMOVE_ERROR = "REMOVE_ERROR";

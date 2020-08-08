@@ -11,6 +11,8 @@ import {
   LOAD_DETAILS,
   REGISTER_MEMBER,
   LOGOUT,
+  SET_ERROR,
+  REMOVE_ERROR,
 } from "../types";
 import axios from "axios";
 const AppState = (props) => {
@@ -72,7 +74,8 @@ const AppState = (props) => {
       dispatch({ type: LOGIN_MEMBER, payload: res.data });
       loadUser();
     } catch (error) {
-      console.log(error.msg);
+      addError(error.msg);
+      console.log(error);
     }
   };
 
@@ -96,6 +99,15 @@ const AppState = (props) => {
   const logout = () => {
     dispatch({ type: LOGOUT });
   };
+
+  //set error
+  const addError = (err) => {
+    dispatch({ type: SET_ERROR, payload: err });
+  };
+  //dismiss error
+  const removeErrors = () => {
+    dispatch({ type: REMOVE_ERROR });
+  };
   return (
     <AppContext.Provider
       value={{
@@ -112,6 +124,8 @@ const AppState = (props) => {
         loginMember,
         registerMember,
         logout,
+        removeErrors,
+        addError,
       }}
     >
       {props.children}

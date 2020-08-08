@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import sample from "../../../sample.jpg";
 import { Link } from "react-router-dom";
 import AppContext from "../../../context/app/appContext";

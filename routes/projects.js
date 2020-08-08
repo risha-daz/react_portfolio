@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const Project = require("../models/Project");
-const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
 // @route   GET ./api/projects/
@@ -23,33 +22,25 @@ router.get("/", async (req, res) => {
 // @route   POST ./api/projects/
 // @desc    add a project
 // @access  private
-router.post(
-  "/",
-  [auth, [check("name", "Please enter a title").not().isEmpty()]],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ msg: "Please enter a title" });
-    }
-    const { name, description, completed, link, postedby, team } = req.body;
-    try {
-      const newProject = new Project({
-        name,
-        description,
-        completed,
-        postedby,
-        team,
-        link,
-      });
+router.post("/", auth, async (req, res) => {
+  const { name, description, completed, link, postedby, team } = req.body;
+  try {
+    const newProject = new Project({
+      name,
+      description,
+      completed,
+      postedby,
+      team,
+      link,
+    });
 
-      const project = await newProject.save();
-      res.json(project);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server error");
-    }
+    const project = await newProject.save();
+    res.json(project);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
   }
-);
+});
 
 // @route   PUT ./api/projects/:id
 // @desc    update a project

@@ -4,7 +4,7 @@ import Alert from "../Alert";
 import { Link } from "react-router-dom";
 const Login = (props) => {
   const appContext = useContext(AppContext);
-  const { errormsg, currentUser, loginMember, goto } = appContext;
+  const { errormsg, currentUser, loginMember, goto, removeErrors } = appContext;
   useEffect(() => {
     if (currentUser) {
       goto({ name: "Aeromodelling Club", url: "/" });
@@ -33,7 +33,7 @@ const Login = (props) => {
     appContext.goto({ name: "Register", url: "/register" });
   };
   const dismissAlert = (e) => {
-    //removeErrors();
+    removeErrors();
   };
   return (
     <div className='bg-white container mx-auto p-6 md:p-32 w-11/12 shadow'>
@@ -42,7 +42,7 @@ const Login = (props) => {
       </h3>
       {errormsg && (
         <Alert
-          dismissAlert={dismissAlert()}
+          dismissAlert={dismissAlert}
           msg={errormsg}
           type='Error'
           color='red'

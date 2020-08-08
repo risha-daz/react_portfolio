@@ -7,6 +7,8 @@ import {
   LOGIN_MEMBER,
   LOAD_DETAILS,
   REGISTER_MEMBER,
+  SET_ERROR,
+  REMOVE_ERROR,
 } from "../types";
 
 export default (state, action) => {
@@ -28,6 +30,10 @@ export default (state, action) => {
     case LOGOUT:
       localStorage.removeItem("token");
       return { ...state, currentUser: null };
+    case SET_ERROR:
+      return { ...state, errormsg: action.payload };
+    case REMOVE_ERROR:
+      return { ...state, errormsg: null };
     default:
       return state;
   }
