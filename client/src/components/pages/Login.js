@@ -4,7 +4,7 @@ import Alert from "../Alert";
 import { Link } from "react-router-dom";
 const Login = (props) => {
   const appContext = useContext(AppContext);
-  const { errormsg, currentUser, loginMember, goto, removeErrors } = appContext;
+  const { currentUser, loginMember, goto, addError } = appContext;
   useEffect(() => {
     if (currentUser) {
       goto({ name: "Aeromodelling Club", url: "/" });
@@ -26,28 +26,24 @@ const Login = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (!username || !password) {
+      addError({ type: "Error", color: "red", msg: "Please fill all fields" });
+    }
     loginMember({ username, password });
   };
 
   const gotoRegister = () => {
     appContext.goto({ name: "Register", url: "/register" });
   };
-  const dismissAlert = (e) => {
-    removeErrors();
-  };
+
   return (
     <div className='bg-white container mx-auto p-6 md:p-32 w-11/12 shadow'>
       <h3 className='sm:text-6xl text-5xl mb-6 text-center uppercase font-bold'>
         MEMBER LOGIN
       </h3>
-      {errormsg && (
-        <Alert
-          dismissAlert={dismissAlert}
-          msg={errormsg}
-          type='Error'
-          color='red'
-        />
-      )}
+
+      <Alert />
+
       <form className='w-full max-w-sm mx-auto pt-6'>
         <div className='md:flex md:items-center mb-6 '>
           <div className='md:w-1/3'>

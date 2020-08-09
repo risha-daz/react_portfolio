@@ -3,7 +3,7 @@ import AppContext from "../../context/app/appContext";
 import Alert from "../Alert";
 const Register = (props) => {
   const appContext = useContext(AppContext);
-  const { errormsg, currentUser, goto, registerMember } = appContext;
+  const { errormsg, currentUser, goto, registerMember, addError } = appContext;
   useEffect(() => {
     if (currentUser) {
       goto({ name: "Aeromodelling Club", url: "/" });
@@ -29,10 +29,16 @@ const Register = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (password.length >= 8 && password === password2 && username !== "") {
-      registerMember(user);
+    if (password.length < 8) {
+      addError({
+        type: "error",
+        color: "red",
+        msg: "Password must be at least 6 charachters",
+      });
+    } else if (password !== password2) {
+      addError({ type: "Error", color: "red", msg: "Passwords do not match" });
     } else {
-      console.log("error!");
+      registerMember(user);
     }
   };
   const dismissAlert = (e) => {
@@ -43,14 +49,9 @@ const Register = (props) => {
       <h3 className='sm:text-6xl text-4xl mb-6 text-center uppercase font-bold'>
         MEMBER REGISTRATION
       </h3>
-      {errormsg && (
-        <Alert
-          dismissAlert={dismissAlert()}
-          msg={errormsg}
-          type='Error'
-          color='red'
-        />
-      )}
+
+      <Alert />
+
       <form className='w-full max-w-lg mx-auto pt-6'>
         <div className='mb-6 '>
           <div>

@@ -29,7 +29,9 @@ router.post("/", async (req, res) => {
   const { username, email, password, linkedin, github } = req.body;
   try {
     let user = await User.findOne({ username });
-
+    if (user) {
+      return res.status(400).json({ msg: "Username already exists" });
+    }
     user = new User({
       username,
       email,
@@ -56,7 +58,7 @@ router.post("/", async (req, res) => {
       },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        return res.json({ token });
       }
     );
   } catch (err) {

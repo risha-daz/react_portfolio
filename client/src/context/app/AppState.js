@@ -73,9 +73,8 @@ const AppState = (props) => {
       const res = await axios.post("/api/auth", user, config);
       dispatch({ type: LOGIN_MEMBER, payload: res.data });
       loadUser();
-    } catch (error) {
-      addError(error.msg);
-      console.log(error);
+    } catch (err) {
+      addError({ type: "Error", color: "red", msg: err.response.data.msg });
     }
   };
 
@@ -91,7 +90,7 @@ const AppState = (props) => {
       dispatch({ type: REGISTER_MEMBER, payload: res.data });
       loadUser();
     } catch (error) {
-      console.log(error.msg);
+      addError({ type: "error", color: "red", msg: error.response.data.msg });
     }
   };
 
