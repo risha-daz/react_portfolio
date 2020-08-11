@@ -3,6 +3,7 @@ import ProjectList from "../layout/projects/ProjectList";
 import AppContext from "../../context/app/appContext";
 import PContext from "../../context/projects/pContext";
 import AddProject from "../layout/projects/AddProject";
+import Preloader from "../Preloader";
 const Projects = () => {
   const pContext = useContext(PContext);
   const appContext = useContext(AppContext);
@@ -15,7 +16,7 @@ const Projects = () => {
       <h3 className='sm:text-6xl text-4xl p-10 text-center uppercase font-bold'>
         Our Projects
       </h3>
-      {pContext.projects && <ProjectList />}
+      {pContext.projects ? <ProjectList /> : <Preloader />}
       {appContext.currentUser && <AddProject />}
     </div>
   );

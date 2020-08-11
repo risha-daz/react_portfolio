@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import UserList from "../layout/users/UserList";
 import AppContext from "../../context/app/appContext";
+import Preloader from "../Preloader";
 const About = () => {
   const appContext = useContext(AppContext);
   useEffect(() => {
@@ -13,7 +14,7 @@ const About = () => {
       </h3>
       <h2 className='text-center italic sm:text-4xl text-4xl'>Subtitle 2</h2>
       <br></br>
-      {appContext.users && <UserList />}
+      {appContext.users ? <UserList /> : <Preloader />}
     </div>
   );
 };
