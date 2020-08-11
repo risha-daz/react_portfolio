@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
-import Menu from "./components/layout/Menu";
+
 import Footer from "./components/layout/Footer";
 import bg from "./components/bg.jpg";
 import Home from "./components/pages/Home";
@@ -14,6 +14,7 @@ import Edit from "./components/layout/projects/Edit";
 import AppState from "./context/app/AppState";
 import PState from "./context/projects/PState";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Popmenu from "./components/layout/Popmenu";
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
       <PState>
         <Router>
           <div className='mx-auto relative' style={background}>
-            <Menu />
+            <Popmenu />
             <Header />
             <Navbar />
             <Switch>

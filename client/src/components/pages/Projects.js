@@ -8,7 +8,6 @@ const Projects = () => {
   const appContext = useContext(AppContext);
   useEffect(() => {
     pContext.getProjects();
-
     //eslint-disable-next-line
   }, []);
   return (

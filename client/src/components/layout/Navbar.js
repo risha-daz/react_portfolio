@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import bg from "../bg.jpg";
 import NavItem from "./NavItem";
 import SocialIcons from "./SocialIcons";
@@ -10,21 +10,21 @@ const Navbar = () => {
     { name: "Login", url: "/login" },
   ]);
   return (
-    <div
-      className={
-        "flex flex-col lg:justify-between lg:flex-row relative container mx-auto pt-36 w-11/12"
-      }
-      style={{ background: `url(${bg})` }}
-    >
-      <div className='nav2 flex-col lg:flex-row hidden lg:flex'>
-        {navitems.map((item) => (
-          <NavItem key={item.url} myname={item} />
-        ))}
+    <Fragment>
+      <div
+        className='relative container mx-auto pt-36 w-11/12 flex flex-col lg:justify-between lg:flex-row'
+        style={{ background: `url(${bg})` }}
+      >
+        <div className='nav2 flex-col lg:flex-row hidden lg:flex'>
+          {navitems.map((item) => (
+            <NavItem key={item.url} myname={item} mobile={false} />
+          ))}
+        </div>
+        <div className='social-icons hidden lg:flex'>
+          <SocialIcons stl='200' />
+        </div>
       </div>
-      <div className='social-icons hidden lg:flex'>
-        <SocialIcons stl='200' />
-      </div>
-    </div>
+    </Fragment>
   );
 };
 

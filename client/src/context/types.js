@@ -1,6 +1,4 @@
 export const GOTO_PAGE = "GOTO_PAGE";
-export const SHOW_MENU = "SHOW_MENU";
-export const SHOW_NAV = "SHOW_NAV";
 export const GET_PROJECTS = "GET_PROJECTS";
 export const EDIT_PROJECT = "EDIT_PROJECT";
 export const DELETE_PROJECT = "DELETE_PROJECT";

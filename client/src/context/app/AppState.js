@@ -4,8 +4,7 @@ import AppReducer from "./appReducer";
 import setAuthToken from "../../setAuthToken";
 import {
   GOTO_PAGE,
-  SHOW_MENU,
-  SHOW_NAV,
+  TOGGLE_MENU,
   GET_MEMBERS,
   LOGIN_MEMBER,
   LOAD_DETAILS,
@@ -18,7 +17,6 @@ import axios from "axios";
 const AppState = (props) => {
   const initialState = {
     title: { name: "Aeromodelling Club", url: "/" },
-    menu: "desktop",
     errormsg: null,
     users: null,
     currentUser: null,
@@ -27,12 +25,6 @@ const AppState = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
   const goto = (obj) => {
     dispatch({ type: GOTO_PAGE, payload: obj });
-  };
-  const showMenu = () => {
-    dispatch({ type: SHOW_MENU });
-  };
-  const showNav = () => {
-    dispatch({ type: SHOW_NAV });
   };
 
   //get users
@@ -111,13 +103,12 @@ const AppState = (props) => {
     <AppContext.Provider
       value={{
         title: state.title,
-        menu: state.menu,
+
         users: state.users,
         currentUser: state.currentUser,
         errormsg: state.errormsg,
         goto,
-        showMenu,
-        showNav,
+
         getMembers,
         loadUser,
         loginMember,

@@ -1,5 +1,7 @@
 @tailwind base;
 
+@tailwind components;
+
 .nav-item {
   @apply p-6 uppercase text-white text-lg font-bold;
 }
@@ -7,7 +9,5 @@
 .mob-nav-item {
   @apply uppercase px-6 py-2 text-gray-800 text-lg font-bold;
 }
-
-@tailwind components;
 
 @tailwind utilities;

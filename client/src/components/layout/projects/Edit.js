@@ -203,16 +203,16 @@ const Edit = (props) => {
                 />
               </div>
             ))}
-          <div class='w-full flex flex-center mt-4'>
+          <div className='w-full flex flex-center mt-4'>
             <label
               className='block text-gray-500 font-bold mb-1 mr-2 ml-0'
               htmlFor='inline-full-name'
             >
               Add Team Members:
             </label>
-            <div class=' mr-3 w-full'>
+            <div className=' mr-3 w-full'>
               <select
-                class='appearance-none w-full h-full bg-gray-200 border border-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:bg-white focus:border-gray-500'
+                className='appearance-none w-full h-full bg-gray-200 border border-gray-200 text-gray-700 p-3 rounded focus:outline-none focus:bg-white focus:border-gray-500'
                 value={addmember}
                 name='addmember'
                 onChange={onChange}
@@ -230,7 +230,7 @@ const Edit = (props) => {
             </div>
             <button
               onClick={addMember}
-              class='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded'
+              className='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded'
             >
               <i className='fa fa-plus'>{"  "}</i>
             </button>
