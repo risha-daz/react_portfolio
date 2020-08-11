@@ -4,7 +4,6 @@ import AppReducer from "./appReducer";
 import setAuthToken from "../../setAuthToken";
 import {
   GOTO_PAGE,
-  TOGGLE_MENU,
   GET_MEMBERS,
   LOGIN_MEMBER,
   LOAD_DETAILS,

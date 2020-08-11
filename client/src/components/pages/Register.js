@@ -3,7 +3,7 @@ import AppContext from "../../context/app/appContext";
 import Alert from "../Alert";
 const Register = (props) => {
   const appContext = useContext(AppContext);
-  const { errormsg, currentUser, goto, registerMember, addError } = appContext;
+  const { currentUser, goto, registerMember, addError } = appContext;
   useEffect(() => {
     if (currentUser) {
       goto({ name: "Aeromodelling Club", url: "/" });
@@ -41,9 +41,7 @@ const Register = (props) => {
       registerMember(user);
     }
   };
-  const dismissAlert = (e) => {
-    //removeErrors();
-  };
+
   return (
     <div className='container mx-auto p-6 md:p-32 w-11/12 shadow bg-white'>
       <h3 className='sm:text-6xl text-4xl mb-6 text-center uppercase font-bold'>

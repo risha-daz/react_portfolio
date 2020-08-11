@@ -56,7 +56,7 @@ const PState = (props) => {
   //delete
   const deleteProject = async (id) => {
     try {
-      const res = await axios.delete(`/api/projects/${id}`);
+      await axios.delete(`/api/projects/${id}`);
       dispatch({ type: DELETE_PROJECT, payload: id });
     } catch (error) {
       console.log(error.msg);

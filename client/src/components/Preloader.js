@@ -3,7 +3,7 @@ import spinner from "../spinner.gif";
 const Preloader = () => {
   return (
     <div className='text-center'>
-      <img src={spinner} />
+      <img src={spinner} alt='Preloader' />
     </div>
   );
 };

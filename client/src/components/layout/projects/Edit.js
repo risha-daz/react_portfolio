@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import AppContext from "../../../context/app/appContext";
 import PContext from "../../../context/projects/pContext";
+import { Link } from "react-router-dom";
 
 const Edit = (props) => {
   const appContext = useContext(AppContext);
@@ -37,11 +38,15 @@ const Edit = (props) => {
         link: myproject.link,
       });
     } else {
-      setProject({
-        ...project,
-        postedby: currentUser.username,
-        team: [currentUser.username],
-      });
+      if (currentUser) {
+        setProject({
+          ...project,
+          postedby: currentUser.username,
+          team: [currentUser.username],
+        });
+      } else {
+        props.history.push("/");
+      }
     }
     //eslint-disable-next-line
   }, [currentUser, props.history]);
@@ -85,9 +90,7 @@ const Edit = (props) => {
   const toggleComplete = (e) => {
     setProject({ ...project, completed: !completed });
   };
-  const dismissAlert = (e) => {
-    //removeErrors();
-  };
+
   return (
     <div className='container mx-auto p-6 md:p-32 w-11/12 shadow bg-white'>
       <h3 className='sm:text-6xl text-4xl mb-6 text-center uppercase font-bold'>
@@ -197,7 +200,6 @@ const Edit = (props) => {
                   className='absolute top-0 border-none bottom-0 right-0 px-4 py-2 text-xl text-gray-600 bg-transparent'
                   type='button'
                   id={index}
-                  role='button'
                   value='&times;'
                   onClick={removeMember}
                 />
@@ -259,6 +261,11 @@ const Edit = (props) => {
           >
             {props.match.params.id !== "add" ? "Edit" : "Add"}
           </button>
+          <Link to='/projects'>
+            <button className='shadow bg-gray-300 ml-4 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'>
+              Back
+            </button>
+          </Link>
         </div>
       </form>
     </div>

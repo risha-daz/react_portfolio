@@ -6,6 +6,7 @@ const About = () => {
   const appContext = useContext(AppContext);
   useEffect(() => {
     appContext.getMembers();
+    //eslint-disable-next-line
   }, []);
   return (
     <div className='bg-white container mx-auto p-12 md:p-32 w-11/12 shadow-2xl'>
